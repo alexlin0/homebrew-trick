@@ -18,12 +18,12 @@ class Openmotif < Formula
 
   def patches
     # MacPorts patches
-    ['https://trac.macports.org/export/118594/trunk/dports/x11/openmotif/files/patch-uintptr_t-cast.diff',
+    { p0: ['https://trac.macports.org/export/118594/trunk/dports/x11/openmotif/files/patch-uintptr_t-cast.diff',
      'https://trac.macports.org/export/118594/trunk/dports/x11/openmotif/files/patch-lib-XmP.h.diff',
      'https://trac.macports.org/export/118594/trunk/dports/x11/openmotif/files/patch-autogen.sh.diff',
      'https://trac.macports.org/export/118594/trunk/dports/x11/openmotif/files/patch-automake-1.13.diff',
      'https://trac.macports.org/export/118594/trunk/dports/x11/openmotif/files/patch-configure.ac.diff'
-    ]
+    ]}
   end
 
   def install
