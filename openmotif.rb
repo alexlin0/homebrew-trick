@@ -28,7 +28,7 @@ class Openmotif < Formula
 
   def install
     ENV.deparallelize
-    system 'rm -rf demos'
+    system 'rm -f demos/lib/Exm/String{.h,.c,P.h}'
     system './autogen.sh'
     system "./configure --disable-dependency-tracking --prefix=#{prefix} --enable-xft --enable-jpeg --enable-png"
     system 'make install'
