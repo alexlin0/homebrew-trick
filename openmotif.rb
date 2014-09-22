@@ -2,15 +2,19 @@ require 'formula'
 
 class Openmotif < Formula
   url 'https://downloads.sourceforge.net/project/motif/Motif%202.3.4%20Source%20Code/motif-2.3.4-src.tgz'
-  homepage 'http://sourceforge.net/projects/motif/'
+  homepage 'http://motif.ics.com/'
   sha256 '637efa09608e0b8f93465dbeb7c92e58ebb14c4bc1b488040eb79a65af3efbe0'
 
-  def install
-    ENV.deparallelize
-    system "./configure", "--disable-dependency-tracking",
-    "--prefix=#{prefix}", "--enable-xft", "--enable-jpeg", "--enable-png"
-    system "make install"
-  end
+  depends_on 'jpeg'
+  depends_on 'libpng'
+  depends_on :x11
+
+  depends_on 'pkg-config' => :build
+  depends_on :autoconf   => :build
+  depends_on :automake   => :build
+  depends_on :libtool    => :build
+
+  conflicts_with 'lesstif'
 
   def patches
     # MacPorts patches
@@ -20,5 +24,11 @@ class Openmotif < Formula
      'https://trac.macports.org/export/118594/trunk/dports/x11/openmotif/files/patch-automake-1.13.diff',
      'https://trac.macports.org/export/118594/trunk/dports/x11/openmotif/files/patch-configure.ac.diff'
     ]
+  end
+
+  def install
+    ENV.deparallelize
+    system "./configure --disable-dependency-tracking --prefix=#{prefix} --enable-xft --enable-jpeg --enable-png"
+    system 'make install'
   end
 end
