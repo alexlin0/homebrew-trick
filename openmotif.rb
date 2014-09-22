@@ -30,7 +30,14 @@ class Openmotif < Formula
     ENV.deparallelize
     system 'rm -f demos/lib/Exm/String{.h,.c,P.h}'
     system './autogen.sh'
-    system "./configure --disable-dependency-tracking --prefix=#{prefix} --enable-xft --enable-jpeg --enable-png"
+    system './configure',
+      '--disable-dependency-tracking',
+      "--x-includes=#{MacOS::X11.include}",
+      "--x-libraries=#{MacOS::X11.lib}",
+      "--prefix=#{prefix}",
+      '--enable-xft',
+      '--enable-jpeg',
+      '--enable-png'
     system 'make install'
   end
 end
