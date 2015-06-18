@@ -12,7 +12,7 @@ class Trick < Formula
   depends_on :x11
   depends_on "llvm" => "with-clang"
   depends_on "swig"
-  depends_on "openmotif"
+  depends_on "openmotif" if build.with? "jscdirs"
 
   resource "er7utils" do
       url "https://nexus.jsc.nasa.gov/svn/er7_utils/trunk/er7_utils", :using => :svn
