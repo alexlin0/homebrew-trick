@@ -10,6 +10,7 @@ class Trick < Formula
   sha256 ""
 
   # depends_on "cmake" => :build
+  depends_on "brew-cask"
   depends_on :java
   depends_on :x11
   depends_on "llvm" => "with-clang"
