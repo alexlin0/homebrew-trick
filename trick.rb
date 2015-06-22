@@ -13,6 +13,7 @@ class Trick < Formula
   depends_on "llvm" => "with-clang"
   depends_on "swig"
   depends_on "gsl" => :optional
+  depends_on "gtest" => :optional
   depends_on "homebrew/science/hdf5" => :optional
   depends_on "openmotif" if build.with? "jscdirs"
 
@@ -24,9 +25,10 @@ class Trick < Formula
       url "https://tricklab.jsc.nasa.gov/svn/repos/trick/trick/trunk/trick_source/data_products/fermi-ware", :using => :svn
   end
 
-  option "with-jscdirs", "Build JSC specific directories"
   option "with-gsl", "Include GNU Scientific Library (random number generators)"
+  option "with-gtest", "Include Google test support"
   option "with-hdf5", "Include HDF5 data recording/plotting"
+  option "with-jscdirs", "Build JSC specific directories"
 
   def install
     if build.with? "jscdirs"
@@ -36,6 +38,7 @@ class Trick < Formula
 
     args = Array.new()
     args << "--with-gsl=/usr/local" if build.with? "gsl"
+    args << "--with-gtest=/usr/local" if build.with? "gtest"
     args << "--with-hdf5=/usr/local" if build.with? "hdf5"
 
     system "./configure", "--prefix=#{prefix}",

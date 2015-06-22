@@ -8,6 +8,10 @@ class Gtest < Formula
   version "1.7"
   sha256 "247ca18dd83f53deb1328be17e4b1be31514cedfc1e3424f672bf11fd7e0d60d"
 
+  def patches
+    { p0: ['https://github.com/alexlin0/homebrew-trick/raw/master/gtest-Makefile.in.diff']}
+  end
+
   def install
     system "./configure", "--prefix=#{prefix}", "--disable-debug", "--disable-dependency-tracking"
     system "make"
