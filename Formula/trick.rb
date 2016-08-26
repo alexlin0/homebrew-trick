@@ -10,12 +10,14 @@ class Trick < Formula
 
   env :std
 
-  depends_on :java
-  depends_on :x11
-  depends_on "llvm" => :build
-  depends_on "swig"
-  depends_on "gsl" => :optional
-  depends_on "hdf5" => :optional
+  if ( /darwin/ =~ RUBY_PLATFORM ) 
+    depends_on :java
+    depends_on :x11
+    depends_on "llvm" => :build
+    depends_on "swig"
+    depends_on "gsl" => :optional
+    depends_on "hdf5" => :optional
+  end
 
   def install
     system "./configure", "--prefix=#{prefix}", "--disable-debug", "--disable-dependency-tracking"
